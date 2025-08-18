@@ -4,21 +4,21 @@ import { MapPin, Users, Trophy, Target, Heart, Zap } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-background dark:bg-background/50 dark:text-foreground">
+    <section id="about" className="py-24 bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium mb-6">
             <Heart className="w-4 h-4 mr-2" />
             À propos de nous
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
             Votre partenaire
-            <span className="gradient-text block mt-2">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block mt-2">
               technologique au Togo
             </span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Depuis notre création, nous nous engageons à fournir des solutions digitales d&apos;excellence qui transforment les entreprises africaines. Notre approche combine innovation technologique et compréhension profonde du marché local.
           </p>
         </div>
@@ -27,21 +27,21 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Text Content */}
           <div className="animate-fade-in-left">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Située à <span className="font-semibold text-primary">Lomé</span>, JAXE TECH accompagne les entreprises togolaises et 
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+              Située à <span className="font-semibold text-blue-600 dark:text-blue-400">Lomé</span>, JAXE TECH accompagne les entreprises togolaises et 
               africaines dans leur transformation digitale. Nous allions expertise technique, 
               design moderne et stratégie marketing pour que chaque projet devienne un 
-              <span className="font-semibold gradient-text">levier de croissance durable</span>.
+              <span className="font-semibold gradient-text"> {' '}levier de croissance durable</span>.
             </p>
             
             {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 dark:text-gray-400">
               {[
                 {
                   icon: MapPin,
                   title: "Expertise Locale",
                   description: "Connaissance approfondie du marché togolais et africain",
-                  color: "text-blue-600 dark:text-blue-400",
+                  color: "text-gray-600 dark:text-gray-400",
                   bg: "bg-blue-500/10"
                 },
                 {
@@ -86,7 +86,7 @@ const About = () => {
           <div className="animate-fade-in-right">
             <div className="relative">
               {/* Main card */}
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg">
+              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg dark:text-gray-400">
                 <div className="text-center mb-6">
                   <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Target className="w-10 h-10 text-primary" />
@@ -108,7 +108,7 @@ const About = () => {
                     <div className="text-xs text-muted-foreground">Années</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">100%</div>
+                    <div className="text-2xl font-bold gradient-text">98%</div>
                     <div className="text-xs text-muted-foreground">Satisfaits</div>
                   </div>
                 </div>

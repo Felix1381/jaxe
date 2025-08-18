@@ -8,7 +8,7 @@ const WhyChooseUs = () => {
       title: "Expertise Locale",
       description: "Basés au Togo, nous comprenons parfaitement les besoins du marché africain et offrons une proximité culturelle unique.",
       icon: MapPin,
-      color: "text-blue-600 dark:text-blue-400",
+      color: "text-blue-600 dark:text-gray-400",
       bg: "bg-blue-500/10",
       gradient: "from-blue-500 to-cyan-500"
     },

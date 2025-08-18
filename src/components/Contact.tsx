@@ -50,7 +50,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+228 XX XX XX XX",
+      value: "+228 97 99 99 43",
       description: "Lun-Ven 8h-18h"
     },
     {

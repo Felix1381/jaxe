@@ -18,9 +18,9 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-slate-900">
       {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700" />
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -32,35 +32,35 @@ const Hero = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         <div className="text-center animate-fade-in-up">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <Globe className="w-4 h-4 mr-2" />
             Agence digitale basée au Togo
           </div>
           
           {/* Main heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up text-gray-900 dark:text-white" style={{ animationDelay: '0.4s' }}>
             Transformez votre vision en{' '}
-            <span className="gradient-text block mt-2">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block mt-2">
               réalité digitale
             </span>
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             JAXE TECH accompagne les entreprises togolaises et africaines dans leur transformation digitale avec des solutions web et mobiles innovantes, performantes et sur mesure.
           </p>
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             <button 
-              className="group relative px-8 py-4 bg-primary text-primary-foreground rounded-xl text-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center"
+              className="group relative px-8 py-4 bg-blue-600 text-white rounded-xl text-lg font-semibold hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center"
               onClick={scrollToContact}
             >
               Démarrer votre projet
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
             <button 
-              className="group px-8 py-4 border-2 border-border hover:border-primary text-foreground hover:text-primary rounded-xl text-lg font-semibold transition-all duration-300 hover:bg-accent/50 flex items-center justify-center"
+              className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl text-lg font-semibold transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center justify-center"
               onClick={scrollToAbout}
             >
               Découvrir nos services
@@ -69,11 +69,11 @@ const Hero = () => {
         </div>
         
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 animate-fade-in-up dark:text-gray-400" style={{ animationDelay: '1s' }}>
           {[
             { number: '50+', label: 'Projets réalisés', icon: Code },
             { number: '5+', label: 'Années d\'expérience', icon: Globe },
-            { number: '100%', label: 'Clients satisfaits', icon: Smartphone }
+            { number: '98%', label: 'Clients satisfaits', icon: Smartphone }
           ].map((stat, index) => {
             const Icon = stat.icon;
             return (
@@ -89,7 +89,7 @@ const Hero = () => {
         </div>
         
         {/* Technologies */}
-        <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
+        <div className="text-center animate-fade-in-up dark:text-gray-400" style={{ animationDelay: '1.2s' }}>
           <p className="text-muted-foreground mb-8">Technologies que nous maîtrisons</p>
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
             {['React', 'Next.js', 'Node.js', 'Python', 'WordPress', 'Shopify'].map((tech, index) => (

@@ -10,7 +10,7 @@ const Method = () => {
       description: "Nous étudions votre secteur, vos objectifs et votre audience pour définir la stratégie optimale.",
       icon: Search,
       color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-500/10",
+      bg: "bg-gray-500/10 dark:bg-blue-500/10",
       gradient: "from-blue-500 to-cyan-500"
     },
     {

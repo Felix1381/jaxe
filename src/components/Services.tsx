@@ -37,21 +37,21 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-muted/30">
+    <section id="services" className="py-24 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4 mr-2" />
             Nos Services
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
             Solutions digitales
-            <span className="gradient-text block mt-2">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block mt-2">
               sur mesure
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Des solutions digitales complètes et innovantes pour propulser votre entreprise vers le succès dans l&apos;ère numérique.
           </p>
         </div>
@@ -63,7 +63,7 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className="group relative bg-card border border-border rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in-up"
+                className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Gradient background on hover */}
@@ -76,11 +76,11 @@ const Services = () => {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {service.title}
                   </h3>
 
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
 
@@ -91,13 +91,13 @@ const Services = () => {
                         <div className={`w-5 h-5 ${service.bgColor} rounded-full flex items-center justify-center flex-shrink-0`}>
                           <Check className={`w-3 h-3 ${service.textColor}`} />
                         </div>
-                        <span className="text-muted-foreground text-sm">{feature}</span>
+                        <span className="text-gray-600 dark:text-gray-300 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   {/* CTA Button */}
-                  <button className={`group/btn w-full ${service.borderColor} border-2 px-6 py-3 rounded-xl font-semibold ${service.textColor} hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 flex items-center justify-center`}>
+                  <button className={`group/btn w-full ${service.borderColor} border-2 px-6 py-3 rounded-xl font-semibold ${service.textColor} hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 flex items-center justify-center`}>
                     En savoir plus
                     <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                   </button>
@@ -109,11 +109,11 @@ const Services = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Prêt à transformer votre présence digitale ?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               Discutons de votre projet et découvrons ensemble comment JAXE TECH peut vous accompagner
             </p>
             <button 

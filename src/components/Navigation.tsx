@@ -25,12 +25,12 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/40">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/40 dark:border-gray-700/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold gradient-text animate-fade-in-left">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in-left">
               JAXE TECH
             </h1>
           </div>
@@ -40,7 +40,7 @@ const Navigation = () => {
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-all duration-300 rounded-lg hover:bg-accent/50 group"
+                className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 group"
                 onClick={() => scrollToSection(item.id)}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -48,7 +48,7 @@ const Navigation = () => {
                 <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
             ))}
-            <div className="ml-4 pl-4 border-l border-border">
+            <div className="ml-4 pl-4 border-l border-gray-300 dark:border-gray-600">
               <ThemeToggle />
             </div>
           </div>
@@ -58,7 +58,7 @@ const Navigation = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-foreground/80 hover:text-foreground hover:bg-accent/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -77,11 +77,11 @@ const Navigation = () => {
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-4 pt-2 pb-6 space-y-2 glass-effect border-t border-border/40">
+        <div className="px-4 pt-2 pb-6 space-y-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200/40 dark:border-gray-700/40">
           {navItems.map((item, index) => (
             <button
               key={item.id}
-              className="block w-full text-left px-4 py-3 text-base font-medium text-foreground/80 hover:text-foreground hover:bg-accent/50 rounded-lg transition-all duration-200 animate-fade-in-up"
+              className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 animate-fade-in-up"
               onClick={() => scrollToSection(item.id)}
               style={{ animationDelay: `${index * 50}ms` }}
             >
