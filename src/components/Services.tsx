@@ -52,7 +52,7 @@ const Services = () => {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Des solutions digitales complètes et innovantes pour propulser votre entreprise vers le succès dans l'ère numérique.
+            Des solutions digitales complètes et innovantes pour propulser votre entreprise vers le succès dans l&apos;ère numérique.
           </p>
         </div>
 

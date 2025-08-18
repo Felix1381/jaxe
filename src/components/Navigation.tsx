@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {

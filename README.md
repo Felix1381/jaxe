@@ -1,3 +1,16 @@
+# JAXE TECH - Site Web Professionnel
+
+Site web professionnel pour JAXE TECH, une agence digitale basée au Togo spécialisée dans le développement web et mobile.
+
+## 🚀 Fonctionnalités
+
+- ✨ Design moderne et professionnel
+- 🌙 Mode sombre complet
+- 📱 Responsive design
+- ⚡ Animations fluides
+- 🎨 Interface utilisateur optimisée
+- 🔧 Built with Next.js 15 + TypeScript
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -29,8 +42,59 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 🚀 Déploiement sur Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prérequis
+- Compte GitHub/GitLab/Bitbucket
+- Compte Vercel
+- Repository Git du projet
+
+### Étapes de déploiement
+
+1. **Connecter le repository**
+   - Allez sur [Vercel](https://vercel.com)
+   - Cliquez sur "New Project"
+   - Importez votre repository Git
+
+2. **Configuration automatique**
+   - Vercel détecte automatiquement Next.js
+   - Build Command: `npm run build` (configuré automatiquement)
+   - Output Directory: `.next` (configuré automatiquement)
+
+3. **Variables d'environnement** (si nécessaire)
+   - Aucune variable spéciale requise pour ce projet
+   - Le thème est géré côté client avec localStorage
+
+4. **Déployer**
+   - Cliquez sur "Deploy"
+   - Vercel build et déploie automatiquement
+
+### Configuration avancée
+
+Le projet inclut un fichier `vercel.json` avec:
+- Headers de sécurité optimisés
+- Cache optimisé pour les assets statiques
+- Configuration des régions (Europe)
+
+### URLs de production
+- URL principale: `https://votre-projet.vercel.app`
+- Domaine personnalisé: Configurable dans les paramètres Vercel
+
+## 🛠️ Technologies utilisées
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + CSS Variables
+- **Icons**: Lucide React
+- **Deployment**: Vercel
+- **Theme**: Dark/Light mode avec système de préférence
+
+## 📱 Responsive Design
+
+Le site est entièrement responsive et optimisé pour:
+- 📱 Mobile (320px+)
+- 📟 Tablet (768px+)
+- 💻 Desktop (1024px+)
+- 🖥️ Large screens (1440px+)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

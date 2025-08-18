@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ const Contact = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -92,7 +92,7 @@ const Contact = () => {
                   Restons en contact
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-8">
-                  Notre équipe est là pour vous accompagner dans tous vos projets digitaux. N'hésitez pas à nous contacter pour discuter de vos besoins.
+                  Notre équipe est là pour vous accompagner dans tous vos projets digitaux. N&apos;hésitez pas à nous contacter pour discuter de vos besoins.
                 </p>
               </div>
 
@@ -292,7 +292,7 @@ const Contact = () => {
                     <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
                     <div>
                       <p className="text-red-800 dark:text-red-200 font-medium">
-                        Erreur lors de l'envoi
+                        Erreur lors de l&apos;envoi
                       </p>
                       <p className="text-red-600 dark:text-red-400 text-sm">
                         Veuillez réessayer ou nous contacter directement.

@@ -1,8 +1,10 @@
+'use client';
+
 import { MapPin, Users, Trophy, Target, Heart, Zap } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-background">
+    <section id="about" className="py-24 bg-background dark:bg-background/50 dark:text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20 animate-fade-in-up">
@@ -16,8 +18,8 @@ const About = () => {
               technologique au Togo
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Basée à Lomé, JAXE TECH accompagne les entreprises dans leur transformation digitale avec passion et expertise.
+          <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+            Depuis notre création, nous nous engageons à fournir des solutions digitales d&apos;excellence qui transforment les entreprises africaines. Notre approche combine innovation technologique et compréhension profonde du marché local.
           </p>
         </div>
 
@@ -91,7 +93,7 @@ const About = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-2">Notre Mission</h3>
                   <p className="text-muted-foreground">
-                    Démocratiser l'accès aux technologies digitales pour les entreprises africaines
+                    Démocratiser l&apos;accès aux technologies digitales pour les entreprises africaines
                   </p>
                 </div>
                 

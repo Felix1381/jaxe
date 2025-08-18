@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, Palette, Search, HeadphonesIcon, Award, Users, Clock, Shield } from 'lucide-react';
+import { MapPin, Palette, Search, HeadphonesIcon, Award, Users } from 'lucide-react';
 
 const WhyChooseUs = () => {
   const reasons = [
