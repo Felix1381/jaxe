@@ -26,16 +26,39 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Validation côté client
+      if (!formData.name || !formData.email || !formData.message) {
+        throw new Error('Veuillez remplir tous les champs obligatoires');
+      }
+
+      // Envoi des données à l'API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur lors de l\'envoi du message');
+      }
+
+      // Succès
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
-    } catch {
+      
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
+      // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };

@@ -1,94 +1,38 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-
-type Theme = 'dark' | 'light' | 'system';
-
-type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-};
-
-type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
-
-const initialState: ThemeProviderState = {
-  theme: 'system',
-  setTheme: () => null,
-};
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+import { useEffect } from 'react';
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
-  storageKey = 'jaxe-ui-theme',
-  ...props
-}: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [mounted, setMounted] = useState(false);
-
-  // Hydrate theme from localStorage after component mounts
+}: {
+  children: React.ReactNode;
+}) {
   useEffect(() => {
-    setMounted(true);
-    const storedTheme = localStorage.getItem(storageKey) as Theme;
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
-  }, [storageKey]);
+    // Apply system theme on mount and listen for changes
+    const applySystemTheme = () => {
+      const root = window.document.documentElement;
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      root.classList.remove('light', 'dark');
+      root.classList.add(isDark ? 'dark' : 'light');
+    };
 
-  useEffect(() => {
-    const root = window.document.documentElement;
+    // Apply theme immediately
+    applySystemTheme();
 
-    root.classList.remove('light', 'dark');
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => applySystemTheme();
+    
+    mediaQuery.addEventListener('change', handleChange);
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light';
+    // Cleanup
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
 
-      root.classList.add(systemTheme);
-      return;
-    }
-
-    root.classList.add(theme);
-  }, [theme]);
-
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
-  };
-
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return (
-      <ThemeProviderContext.Provider {...props} value={value}>
-        <div className="bg-white dark:bg-slate-900">
-          {children}
-        </div>
-      </ThemeProviderContext.Provider>
-    );
-  }
-
-  return (
-    <ThemeProviderContext.Provider {...props} value={value}>
-      {children}
-    </ThemeProviderContext.Provider>
-  );
+  return <>{children}</>;
 }
 
-export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
 
-  if (context === undefined)
-    throw new Error('useTheme must be used within a ThemeProvider');
-
-  return context;
-};
