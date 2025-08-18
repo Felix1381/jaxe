@@ -1,9 +1,9 @@
-import nodemailer from 'nodemailer';
-import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from "nodemailer";
+import { NextRequest, NextResponse } from "next/server";
 
 // Configuration du transporteur Gmail SMTP
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_APP_PASSWORD, // Mot de passe d'application Gmail
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     // Validation
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'Les champs nom, email et message sont requis' },
+        { error: "Les champs nom, email et message sont requis" },
         { status: 400 }
       );
     }
@@ -27,22 +27,26 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Format d\'email invalide' },
+        { error: "Format d'email invalide" },
         { status: 400 }
       );
     }
 
     // Préparer les destinataires
-    const primaryEmail = process.env.CONTACT_EMAIL || 'contact@jaxetech.com';
-    const ccEmails = process.env.CC_EMAILS ? process.env.CC_EMAILS.split(',').map(email => email.trim()) : [];
-    const bccEmails = process.env.BCC_EMAILS ? process.env.BCC_EMAILS.split(',').map(email => email.trim()) : [];
+    const primaryEmail = process.env.CONTACT_EMAIL || "contact@jaxetech.com";
+    const ccEmails = process.env.CC_EMAILS
+      ? process.env.CC_EMAILS.split(",").map((email) => email.trim())
+      : [];
+    const bccEmails = process.env.BCC_EMAILS
+      ? process.env.BCC_EMAILS.split(",").map((email) => email.trim())
+      : [];
 
     // Send email to JAXE TECH
     const emailToCompany = await transporter.sendMail({
       from: `"JAXE-TECH Contact" <${process.env.GMAIL_USER}>`, // Votre Gmail
       to: primaryEmail, // Email principal
-      cc: ccEmails.length > 0 ? ccEmails.join(',') : undefined, // Emails en copie (visibles)
-      bcc: bccEmails.length > 0 ? bccEmails.join(',') : undefined, // Emails en copie cachée (invisibles)
+      cc: ccEmails.length > 0 ? ccEmails.join(",") : undefined, // Emails en copie (visibles)
+      bcc: bccEmails.length > 0 ? bccEmails.join(",") : undefined, // Emails en copie cachée (invisibles)
       subject: `📨 Nouveau contact JAXE-TECH - ${name}`,
       html: `
         <!DOCTYPE html>
@@ -73,7 +77,9 @@ export async function POST(request: NextRequest) {
               <!-- Alerte priorité -->
               <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 20px; border-radius: 12px; border-left: 5px solid #f59e0b; margin-bottom: 25px; text-align: center;">
                 <h2 style="color: #92400e; margin: 0; font-size: 20px; font-weight: 600;">⚡ Nouveau prospect à traiter</h2>
-                <p style="color: #92400e; margin: 8px 0 0 0; font-size: 14px;">Reçu le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}</p>
+                <p style="color: #92400e; margin: 8px 0 0 0; font-size: 14px;">Reçu le ${new Date().toLocaleDateString(
+                  "fr-FR"
+                )} à ${new Date().toLocaleTimeString("fr-FR")}</p>
               </div>
               
               <!-- Informations principales -->
@@ -102,20 +108,28 @@ export async function POST(request: NextRequest) {
                         <a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a>
                       </p>
                     </div>
-                    ${phone ? `
+                    ${
+                      phone
+                        ? `
                     <div>
                       <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">📱 Téléphone</p>
                       <p style="margin: 0; color: #1f2937; font-weight: 500;">
                         <a href="tel:${phone}" style="color: #2563eb; text-decoration: none;">${phone}</a>
                       </p>
                     </div>
-                    ` : ''}
-                    ${company ? `
+                    `
+                        : ""
+                    }
+                    ${
+                      company
+                        ? `
                     <div>
                       <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">🏢 Entreprise</p>
                       <p style="margin: 0; color: #1f2937; font-weight: 500;">${company}</p>
                     </div>
-                    ` : ''}
+                    `
+                        : ""
+                    }
                   </div>
                 </div>
               </div>
@@ -144,12 +158,16 @@ export async function POST(request: NextRequest) {
                      style="background: #ffffff; color: #065f46; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: block; text-align: center; font-weight: 600; border: 2px solid #10b981; transition: all 0.3s ease;">
                     📧 Répondre par email
                   </a>
-                  ${phone ? `
+                  ${
+                    phone
+                      ? `
                   <a href="tel:${phone}" 
                      style="background: #ffffff; color: #065f46; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: block; text-align: center; font-weight: 600; border: 2px solid #10b981; transition: all 0.3s ease;">
                     📱 Appeler maintenant
                   </a>
-                  ` : ''}
+                  `
+                      : ""
+                  }
                 </div>
               </div>
               
@@ -163,11 +181,15 @@ export async function POST(request: NextRequest) {
                   </div>
                   <div>
                     <p style="margin: 0 0 5px 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Date</p>
-                    <p style="margin: 0; color: #1e293b; font-weight: 600;">${new Date().toLocaleDateString('fr-FR')}</p>
+                    <p style="margin: 0; color: #1e293b; font-weight: 600;">${new Date().toLocaleDateString(
+                      "fr-FR"
+                    )}</p>
                   </div>
                   <div>
                     <p style="margin: 0 0 5px 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Heure</p>
-                    <p style="margin: 0; color: #1e293b; font-weight: 600;">${new Date().toLocaleTimeString('fr-FR')}</p>
+                    <p style="margin: 0; color: #1e293b; font-weight: 600;">${new Date().toLocaleTimeString(
+                      "fr-FR"
+                    )}</p>
                   </div>
                 </div>
               </div>
@@ -182,7 +204,7 @@ export async function POST(request: NextRequest) {
           </div>
         </body>
         </html>
-              })}
+
             </p>
           </div>
         </div>
@@ -193,7 +215,7 @@ export async function POST(request: NextRequest) {
     const emailToUser = await transporter.sendMail({
       from: `"JAXE-TECH" <${process.env.GMAIL_USER}>`, // Votre Gmail
       to: email,
-      subject: '✅ Votre demande a été reçue - JAXE-TECH',
+      subject: "✅ Votre demande a été reçue - JAXE-TECH",
       html: `
         <!DOCTYPE html>
         <html lang="fr">
@@ -236,7 +258,9 @@ export async function POST(request: NextRequest) {
                 
                 <p style="color: #374151; line-height: 1.7; margin: 0; font-size: 16px;">
                   Merci d'avoir choisi <strong style="color: #1e3a8a;">JAXE-TECH</strong> pour votre projet ! 
-                  Nous avons bien reçu votre demande concernant <strong style="color: #0ea5e9;">${service || 'nos services'}</strong> 
+                  Nous avons bien reçu votre demande concernant <strong style="color: #0ea5e9;">${
+                    service || "nos services"
+                  }</strong> 
                   via notre plateforme web. Notre équipe d'experts va analyser votre demande et vous contacter rapidement.
                 </p>
               </div>
@@ -251,7 +275,9 @@ export async function POST(request: NextRequest) {
                 <div style="padding: 25px;">
                   <div style="margin-bottom: 20px;">
                     <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Service demandé</p>
-                    <p style="margin: 0; color: #1f2937; font-size: 16px; font-weight: 600; padding: 8px 12px; background: #dbeafe; border-radius: 6px; display: inline-block;">${service || 'Consultation générale'}</p>
+                    <p style="margin: 0; color: #1f2937; font-size: 16px; font-weight: 600; padding: 8px 12px; background: #dbeafe; border-radius: 6px; display: inline-block;">${
+                      service || "Consultation générale"
+                    }</p>
                   </div>
                   
                   <div style="margin-bottom: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 3px solid #3b82f6;">
@@ -264,18 +290,26 @@ export async function POST(request: NextRequest) {
                       <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">📧 Email</p>
                       <p style="margin: 0; color: #1f2937; font-weight: 500;">${email}</p>
                     </div>
-                    ${phone ? `
+                    ${
+                      phone
+                        ? `
                     <div>
                       <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">📱 Téléphone</p>
                       <p style="margin: 0; color: #1f2937; font-weight: 500;">${phone}</p>
                     </div>
-                    ` : ''}
-                    ${company ? `
+                    `
+                        : ""
+                    }
+                    ${
+                      company
+                        ? `
                     <div>
                       <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">🏢 Entreprise</p>
                       <p style="margin: 0; color: #1f2937; font-weight: 500;">${company}</p>
                     </div>
-                    ` : ''}
+                    `
+                        : ""
+                    }
                   </div>
                 </div>
               </div>
@@ -344,20 +378,19 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    console.log('Emails sent successfully:', { emailToCompany, emailToUser });
+    console.log("Emails sent successfully:", { emailToCompany, emailToUser });
 
     return NextResponse.json(
-      { 
-        message: 'Message envoyé avec succès ! Nous vous contacterons bientôt.',
-        success: true 
+      {
+        message: "Message envoyé avec succès ! Nous vous contacterons bientôt.",
+        success: true,
       },
       { status: 200 }
     );
-
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: 'Erreur lors de l\'envoi du message. Veuillez réessayer.' },
+      { error: "Erreur lors de l'envoi du message. Veuillez réessayer." },
       { status: 500 }
     );
   }
