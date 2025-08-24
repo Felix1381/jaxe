@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { fadeInUp, staggerContainer, staggerItem, scaleInSpring } from '@/utils/animations';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -94,84 +96,235 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <motion.section 
+      id="contact" 
+      className="py-20 bg-gray-50 dark:bg-gray-900"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={fadeInUp}
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Contactez <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">JAXE TECH</span>
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <motion.div 
+          className="text-center mb-16"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 
+            className="text-4xl font-bold text-gray-900 dark:text-white mb-4"
+            variants={staggerItem}
+          >
+            Contactez <motion.span 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+              whileHover={{ 
+                backgroundImage: "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)",
+                scale: 1.05
+              }}
+            >
+              JAXE TECH
+            </motion.span>
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            variants={staggerItem}
+          >
             Prêt à démarrer votre projet ? Discutons ensemble de vos besoins et transformons vos idées en réalité.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <motion.div 
+              className="space-y-8"
+              variants={staggerItem}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <motion.h3 
+                  className="text-2xl font-bold text-gray-900 dark:text-white mb-6"
+                  whileHover={{ scale: 1.02, color: "#3b82f6" }}
+                >
                   Restons en contact
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-8">
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-600 dark:text-gray-300 mb-8"
+                  initial={{ opacity: 0.8 }}
+                  whileInView={{ opacity: 1 }}
+                >
                   Notre équipe est là pour vous accompagner dans tous vos projets digitaux. N&apos;hésitez pas à nous contacter pour discuter de vos besoins.
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
 
               {/* Contact Info Cards */}
-              <div className="space-y-6">
+              <motion.div 
+                className="space-y-6"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
-                    <div key={index} className="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    <motion.div 
+                      key={index} 
+                      className="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+                      variants={staggerItem}
+                      whileHover={{ 
+                        scale: 1.02,
+                        y: -5,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                        borderColor: "#3b82f6"
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <motion.div 
+                        className="flex-shrink-0"
+                        whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                      >
+                        <motion.div 
+                          className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
+                          animate={{ 
+                            boxShadow: [
+                              "0 0 0 0 rgba(59, 130, 246, 0.4)",
+                              "0 0 0 10px rgba(59, 130, 246, 0)",
+                              "0 0 0 0 rgba(59, 130, 246, 0)"
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                        >
+                          <motion.div
+                            animate={{ 
+                              y: [0, -2, 0],
+                              rotate: [0, 5, -5, 0]
+                            }}
+                            transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+                          >
+                            <IconComponent className="w-6 h-6 text-white" />
+                          </motion.div>
+                        </motion.div>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                      >
+                        <motion.h4 
+                          className="text-lg font-semibold text-gray-900 dark:text-white mb-1"
+                          whileHover={{ color: "#3b82f6" }}
+                        >
                           {info.title}
-                        </h4>
-                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-1">
+                        </motion.h4>
+                        <motion.p 
+                          className="text-blue-600 dark:text-blue-400 font-medium mb-1"
+                          whileHover={{ scale: 1.05 }}
+                        >
                           {info.value}
-                        </p>
+                        </motion.p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
                           {info.description}
                         </p>
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
 
               {/* Quick Response Promise */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-                <div className="flex items-center space-x-3 mb-3">
-                  <Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <motion.div 
+                className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
+                }}
+              >
+                <motion.div 
+                  className="flex items-center space-x-3 mb-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  </motion.div>
+                  <motion.h4 
+                    className="text-lg font-semibold text-gray-900 dark:text-white"
+                    whileHover={{ scale: 1.02 }}
+                  >
                     Réponse rapide garantie
-                  </h4>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300">
+                  </motion.h4>
+                </motion.div>
+                <motion.p 
+                  className="text-gray-600 dark:text-gray-300"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
                   Nous nous engageons à répondre à votre demande dans les 24h ouvrées.
-                </p>
-              </div>
-            </div>
+                </motion.p>
+              </motion.div>
+            </motion.div>
 
             {/* Contact Form */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <motion.div 
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700"
+              variants={staggerItem}
+              whileHover={{ 
+                scale: 1.01,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+            >
+              <motion.div 
+                className="mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <motion.h3 
+                  className="text-2xl font-bold text-gray-900 dark:text-white mb-2"
+                  whileHover={{ scale: 1.02, color: "#3b82f6" }}
+                >
                   Démarrons votre projet
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-600 dark:text-gray-300"
+                  initial={{ opacity: 0.8 }}
+                  whileInView={{ opacity: 1 }}
+                >
                   Remplissez ce formulaire et nous vous recontacterons rapidement.
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <motion.form 
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -275,60 +428,129 @@ const Contact = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div>
-                  <button
+                <motion.div
+                  variants={staggerItem}
+                >
+                  <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg overflow-hidden relative"
+                    whileHover={!isSubmitting ? { 
+                      scale: 1.02,
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                    } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                    animate={isSubmitting ? { 
+                      backgroundImage: [
+                        "linear-gradient(45deg, #3b82f6, #8b5cf6)",
+                        "linear-gradient(45deg, #8b5cf6, #3b82f6)",
+                        "linear-gradient(45deg, #3b82f6, #8b5cf6)"
+                      ]
+                    } : {}}
+                    transition={{ duration: 2, repeat: isSubmitting ? Infinity : 0 }}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                        Envoi en cours...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 mr-2" />
-                        Envoyer ma demande
-                      </>
-                    )}
-                  </button>
-                </div>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "0%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <div className="relative z-10">
+                      {isSubmitting ? (
+                        <>
+                          <motion.div 
+                            className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          ></motion.div>
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        <>
+                          <motion.div
+                            animate={{ 
+                              x: [0, 3, 0],
+                              rotate: [0, 5, 0]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          >
+                            <Send className="w-5 h-5 mr-2" />
+                          </motion.div>
+                          Envoyer ma demande
+                        </>
+                      )}
+                    </div>
+                  </motion.button>
+                </motion.div>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
-                  <div className="flex items-center space-x-3 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                    <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
-                    <div>
-                      <p className="text-green-800 dark:text-green-200 font-medium">
-                        Message envoyé avec succès !
-                      </p>
-                      <p className="text-green-600 dark:text-green-400 text-sm">
-                        Nous vous recontacterons dans les plus brefs délais.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                <AnimatePresence>
+                  {submitStatus === 'success' && (
+                    <motion.div 
+                      className="flex items-center space-x-3 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+                      initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      >
+                        <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.3 }}
+                      >
+                        <p className="text-green-800 dark:text-green-200 font-medium">
+                          Message envoyé avec succès !
+                        </p>
+                        <p className="text-green-600 dark:text-green-400 text-sm">
+                          Nous vous recontacterons dans les plus brefs délais.
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  )}
 
-                {submitStatus === 'error' && (
-                  <div className="flex items-center space-x-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                    <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
-                    <div>
-                      <p className="text-red-800 dark:text-red-200 font-medium">
-                        Erreur lors de l&apos;envoi
-                      </p>
-                      <p className="text-red-600 dark:text-red-400 text-sm">
-                        Veuillez réessayer ou nous contacter directement.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </form>
-            </div>
-          </div>
+                  {submitStatus === 'error' && (
+                    <motion.div 
+                      className="flex items-center space-x-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+                      initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0, rotate: 180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      >
+                        <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.3 }}
+                      >
+                        <p className="text-red-800 dark:text-red-200 font-medium">
+                          Erreur lors de l&apos;envoi
+                        </p>
+                        <p className="text-red-600 dark:text-red-400 text-sm">
+                          Veuillez réessayer ou nous contacter directement.
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.form>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
 
     
   );

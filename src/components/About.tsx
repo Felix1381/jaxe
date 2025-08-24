@@ -1,41 +1,120 @@
 'use client';
 
 import { MapPin, Users, Trophy, Target, Heart, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, staggerItem, scaleInSpring } from '@/utils/animations';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-white dark:bg-slate-900">
+    <motion.section 
+      id="about" 
+      className="py-24 bg-white dark:bg-slate-900"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={fadeInUp}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium mb-6">
-            <Heart className="w-4 h-4 mr-2" />
+        <motion.div 
+          className="text-center mb-20"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium mb-6"
+            variants={staggerItem}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, -10, 0]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                repeatDelay: 3 
+              }}
+            >
+              <Heart className="w-4 h-4 mr-2" />
+            </motion.div>
             À propos de nous
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-            Votre partenaire
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block mt-2">
+          </motion.div>
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
+            variants={staggerItem}
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Votre partenaire
+            </motion.span>
+            <motion.span 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block mt-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               technologique au Togo
-            </span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            </motion.span>
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+            variants={staggerItem}
+          >
             Depuis notre création, nous nous engageons à fournir des solutions digitales d&apos;excellence qui transforment les entreprises africaines. Notre approche combine innovation technologique et compréhension profonde du marché local.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
           {/* Text Content */}
-          <div className="animate-fade-in-left">
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-              Située à <span className="font-semibold text-blue-600 dark:text-blue-400">Lomé</span>, JAXE TECH accompagne les entreprises togolaises et 
+          <motion.div variants={fadeInLeft}>
+            <motion.p 
+              className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Située à <motion.span 
+                className="font-semibold text-blue-600 dark:text-blue-400"
+                whileHover={{ scale: 1.1, color: "#3b82f6" }}
+              >
+                Lomé
+              </motion.span>, JAXE TECH accompagne les entreprises togolaises et 
               africaines dans leur transformation digitale. Nous allions expertise technique, 
               design moderne et stratégie marketing pour que chaque projet devienne un 
-              <span className="font-semibold gradient-text"> {' '}levier de croissance durable</span>.
-            </p>
+              <motion.span 
+                className="font-semibold gradient-text"
+                whileHover={{ scale: 1.05 }}
+              >
+                {' '}levier de croissance durable
+              </motion.span>.
+            </motion.p>
             
             {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 dark:text-gray-400">
+            <motion.div 
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 dark:text-gray-400"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {[
                 {
                   icon: MapPin,
@@ -68,60 +147,175 @@ const About = () => {
               ].map((feature, index) => {
                 const Icon = feature.icon;
                 return (
-                  <div key={index} className="flex items-start space-x-4 group hover:scale-105 transition-transform duration-300">
-                    <div className={`w-12 h-12 ${feature.bg} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`w-6 h-6 ${feature.color}`} />
-                    </div>
+                  <motion.div 
+                    key={index} 
+                    className="flex items-start space-x-4 group"
+                    variants={staggerItem}
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -5
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.div 
+                      className={`w-12 h-12 ${feature.bg} rounded-xl flex items-center justify-center flex-shrink-0`}
+                      whileHover={{ 
+                        scale: 1.1,
+                        rotate: [0, -10, 10, 0]
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Icon className={`w-6 h-6 ${feature.color}`} />
+                      </motion.div>
+                    </motion.div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
+                      <motion.h3 
+                        className="font-semibold text-foreground mb-1"
+                        whileHover={{ color: "#3b82f6" }}
+                      >
+                        {feature.title}
+                      </motion.h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Visual Content */}
-          <div className="animate-fade-in-right">
-            <div className="relative">
+          <motion.div variants={fadeInRight}>
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
               {/* Main card */}
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-lg dark:text-gray-400">
+              <motion.div 
+                className="bg-card border border-border rounded-2xl p-8 shadow-lg dark:text-gray-400"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                  y: -5
+                }}
+              >
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Notre Mission</h3>
-                  <p className="text-muted-foreground">
+                  <motion.div 
+                    className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                    whileHover={{ 
+                      scale: 1.1,
+                      backgroundColor: "rgba(59, 130, 246, 0.2)",
+                      rotate: [0, -5, 5, 0]
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      animate={{ 
+                        rotate: 360 
+                      }}
+                      transition={{ 
+                        duration: 20, 
+                        repeat: Infinity, 
+                        ease: "linear" 
+                      }}
+                    >
+                      <Target className="w-10 h-10 text-primary" />
+                    </motion.div>
+                  </motion.div>
+                  <motion.h3 
+                    className="text-2xl font-bold text-foreground mb-2"
+                    whileHover={{ scale: 1.05, color: "#3b82f6" }}
+                  >
+                    Notre Mission
+                  </motion.h3>
+                  <motion.p 
+                    className="text-muted-foreground"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
                     Démocratiser l&apos;accès aux technologies digitales pour les entreprises africaines
-                  </p>
+                  </motion.p>
                 </div>
                 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">50+</div>
-                    <div className="text-xs text-muted-foreground">Projets</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">5+</div>
-                    <div className="text-xs text-muted-foreground">Années</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">98%</div>
-                    <div className="text-xs text-muted-foreground">Satisfaits</div>
-                  </div>
-                </div>
-              </div>
+                <motion.div 
+                  className="grid grid-cols-3 gap-4 pt-6 border-t border-border"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {[
+                    { number: "50+", label: "Projets" },
+                    { number: "5+", label: "Années" },
+                    { number: "98%", label: "Satisfaits" }
+                  ].map((stat, index) => (
+                    <motion.div 
+                      key={index}
+                      className="text-center"
+                      variants={staggerItem}
+                      whileHover={{ scale: 1.1, y: -3 }}
+                    >
+                      <motion.div 
+                        className="text-2xl font-bold gradient-text"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: 0.6 + index * 0.1,
+                          type: "spring",
+                          stiffness: 200
+                        }}
+                        viewport={{ once: true }}
+                      >
+                        {stat.number}
+                      </motion.div>
+                      <div className="text-xs text-muted-foreground">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl animate-pulse" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }} />
-            </div>
-          </div>
-        </div>
+              <motion.div 
+                className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" 
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/10 rounded-full blur-2xl" 
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.2, 0.5, 0.2]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
